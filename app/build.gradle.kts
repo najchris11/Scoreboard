@@ -36,6 +36,13 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.fragment.compose)
+    val fragment_version = "1.9.0"
+    implementation("androidx.fragment:fragment:$fragment_version")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.10.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.2.2")
+    implementation("androidx.appcompat:appcompat:1.8.0")
+    implementation("androidx.navigation:navigation-ui-ktx:2.10.0")
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)
