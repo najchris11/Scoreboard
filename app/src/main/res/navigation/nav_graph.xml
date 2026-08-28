@@ -20,7 +20,7 @@
         android:label="Scoreboard" />
     <fragment
         android:id="@+id/timerFragment"
-        android:name="com.najdev.scoreboard.timerscreen.TimerFragment"
+        android:name="com.najdev.scoreboard.stopwatchscreen.StopwatchFragment"
         android:label="Timer" />
 
 </navigation>
