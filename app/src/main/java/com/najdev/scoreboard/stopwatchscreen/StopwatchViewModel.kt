@@ -1,5 +1,14 @@
 package com.najdev.scoreboard.stopwatchscreen
+
+import kotlinx.coroutines.flow.StateFlow
+
 interface StopwatchViewModel {
-    fun start(currentTimeMs: Long)
-    fun updateTime(currentTimeMs: Long): Long
+
+    val stopwatch: StateFlow<StopwatchModel>
+
+    fun start()
+    fun stop()
+    fun reset()
+    fun lap()
+
 }

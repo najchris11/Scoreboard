@@ -1,4 +1,4 @@
 package com.najdev.scoreboard.scoreboardscreen
 
-class ScoreboardViewModel {
+interface ScoreboardViewModel {
 }
