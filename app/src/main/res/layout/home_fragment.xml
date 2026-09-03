@@ -8,18 +8,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_scoreboard"
-        android:text=" To Scoreboard"
+        android:text="@string/to_scoreboard_button_text"
         />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_timer"
-        android:text=" To Timer"
+        android:text="@string/to_timer_button_text"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/sponsorText"
-        android:text="Sponsor Name"
         />
 </LinearLayout>

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Scoreboard</string>
+    <string name="to_timer_button_text">To Timer</string>
+    <string name="to_scoreboard_button_text">To Scoreboard</string>
 </resources>

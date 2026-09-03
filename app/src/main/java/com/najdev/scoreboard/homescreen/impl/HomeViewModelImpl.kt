@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 
 class HomeViewModelImpl: HomeViewModel, ViewModel() {
     private val api = HomeApi()
-    private val _sponsorName = MutableStateFlow<String>("Sponsor Name")
+    private val _sponsorName = MutableStateFlow("Sponsor Name")
     override val sponsorName = _sponsorName.asStateFlow()
 
     init {
