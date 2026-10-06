@@ -31,5 +31,17 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
             }
         }
 
+
+        // Transaction manager reqs event processing
+//        State flow reqs a value and then always gives you back the latest value
+//        i.e variables you wanna have in ui etc
+//        state realistically only wants to give you back the latest info
+//        shared flow can take a bunch of data and then just kinda provides for consumption it as its available
+//        i.e toast notifications or navigation...
+//        key words back pressure, replay
+//        can handle taking one thing at a time and wont skip
+
+
+//        dispatchers and coroutine contexts - handing off tasks to specific threads to not bog down ui etc
     }
 }

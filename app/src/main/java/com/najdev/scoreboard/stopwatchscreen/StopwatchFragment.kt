@@ -43,6 +43,11 @@ class StopwatchFragment: Fragment() {
             StopwatchScreen(viewModel = viewModel)
         }
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        viewModel.stop()
+    }
 }
 
 @Composable

@@ -11,7 +11,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class ScoreboardViewModelImpl : ViewModel(), ScoreboardViewModel {
+class ScoreboardViewModelImpl(
+    private val analytics: ScoreboardAnalytics = ScoreboardAnalytics()
+) : ViewModel(), ScoreboardViewModel {
+    // could be worth coupling enum to clean this up, or move that logic to the fragment
     private val _scoreboard = MutableStateFlow(
         ScoreboardModel(
             home = Team(score = 0, timeoutsTaken = 0),
@@ -19,7 +22,6 @@ class ScoreboardViewModelImpl : ViewModel(), ScoreboardViewModel {
         )
     )
     override val scoreboard = _scoreboard.asStateFlow()
-    private val analytics = ScoreboardAnalytics()
 
     private fun updateTeam(team: TeamName, update: (Team) -> Team): ScoreboardModel {
         val current = _scoreboard.value
@@ -45,6 +47,7 @@ class ScoreboardViewModelImpl : ViewModel(), ScoreboardViewModel {
     }
 
     override fun decreaseScore(team: TeamName) {
+        // coalesce
         val current = teamOf(_scoreboard.value, team)
         if (current.score == 0) return
         val updated = updateTeam(team) { it.copy(score = it.score - 1) }

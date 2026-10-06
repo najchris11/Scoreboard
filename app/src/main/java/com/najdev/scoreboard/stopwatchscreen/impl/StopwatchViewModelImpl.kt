@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.najdev.scoreboard.stopwatchscreen.StopwatchModel
 import com.najdev.scoreboard.stopwatchscreen.StopwatchViewModel
+import com.najdev.scoreboard.stopwatchscreen.helper.ElapsedTimeProvider
+import com.najdev.scoreboard.stopwatchscreen.helper.AndroidElapsedTimeProvider
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -12,7 +14,9 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.milliseconds
 
-class StopwatchViewModelImpl: ViewModel(), StopwatchViewModel {
+class StopwatchViewModelImpl(
+    private val clock: ElapsedTimeProvider = AndroidElapsedTimeProvider
+): ViewModel(), StopwatchViewModel {
     private val _stopwatch = MutableStateFlow(StopwatchModel())
     override val stopwatch = _stopwatch.asStateFlow()
     var timerJob: Job? = null
@@ -20,11 +24,11 @@ class StopwatchViewModelImpl: ViewModel(), StopwatchViewModel {
     override fun start() {
         if (!_stopwatch.value.isRunning) {
             _stopwatch.update {
-                it.copy(baseMs = SystemClock.elapsedRealtime() - it.elapsedMs, isRunning = true)
+                it.copy(baseMs = clock.now() - it.elapsedMs, isRunning = true)
             }
             timerJob = viewModelScope.launch {
                 while (_stopwatch.value.isRunning) {
-                    val now = SystemClock.elapsedRealtime()
+                    val now = clock.now()
                     _stopwatch.update {
                         it.copy(elapsedMs = now - it.baseMs)
                     }
